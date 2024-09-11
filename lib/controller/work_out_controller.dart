@@ -66,4 +66,9 @@ class WorkoutController extends GetxController {
     repsController.clear();
     titleController.clear();
   }
+
+  void reorderSet(int oldIndex, int newIndex) {
+    final item = sets.removeAt(oldIndex);
+    sets.insert(newIndex, item);
+  }
 }

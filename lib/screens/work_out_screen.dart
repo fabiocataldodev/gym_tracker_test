@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gym_tracker_test/app_config/app_colors.dart';
+import 'package:gym_tracker_test/app_config/styles.dart';
 import 'package:gym_tracker_test/controller/work_out_controller.dart';
+import 'package:gym_tracker_test/screens/widgets/custom_input_textfield.dart';
+import 'package:gym_tracker_test/screens/widgets/dropdown_itens.dart';
+import 'package:gym_tracker_test/screens/widgets/save_workout_button.dart';
+import 'package:gym_tracker_test/screens/widgets/set_list.dart';
 import '../models/workout_model.dart';
 
 class WorkoutScreen extends StatelessWidget {
@@ -21,100 +27,55 @@ class WorkoutScreen extends StatelessWidget {
     }
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: AppColors.secondaryColor,
         title: Text(workout == null ? 'New Workout' : 'Edit Workout'),
       ),
-      body: Column(
-        children: [
-          TextField(
-            controller: controller.titleController,
-            decoration: const InputDecoration(labelText: 'Workout Title'),
-          ),
-          DropdownButton<String>(
-            value: controller.selectedExercise.value,
-            items: [
-              'Barbell row',
-              'Bench press',
-              'Shoulder press',
-              'Deadlift',
-              'Squat'
-            ]
-                .map((exercise) => DropdownMenuItem(
-                      value: exercise,
-                      child: Text(exercise),
-                    ))
-                .toList(),
-            onChanged: (value) => controller.selectedExercise.value = value!,
-          ),
-          TextField(
-            controller: controller.weightController,
-            decoration: const InputDecoration(labelText: 'Weight (kg)'),
-            keyboardType: TextInputType.number,
-          ),
-          TextField(
-            controller: controller.repsController,
-            decoration: const InputDecoration(labelText: 'Reps'),
-            keyboardType: TextInputType.number,
-          ),
-          ElevatedButton(
-            onPressed: controller.addSet,
-            child: const Text('Add Set'),
-          ),
-          Expanded(
-            child: Obx(() => ListView.builder(
-                  itemCount: controller.sets.length,
-                  itemBuilder: (context, index) {
-                    final set = controller.sets[index];
-                    return Dismissible(
-                      key: Key(set.hashCode.toString()),
-                      onDismissed: (direction) {
-                        controller.removeSet(index);
-
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            duration: const Duration(seconds: 1)
-                            content: Text('${set.exercise} removed'),
-                          ),
-                        );
-                      },
-                      background: Container(
-                        color: Colors.red,
-                        child: const Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 16.0),
-                            child: Icon(Icons.delete, color: Colors.white),
-                          ),
-                        ),
-                      ),
-                      child: ListTile(
-                        title: Text(
-                            '${set.exercise}: ${set.weight}kg, ${set.reps} reps'),
-                      ),
-                    );
-                  },
-                )),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              final title = controller.titleController.text.isNotEmpty
-                  ? controller.titleController.text
-                  : 'No Title';
-              final workout = Workout(
-                sets: controller.sets.toList(),
-                date: DateTime.now(),
-                title: title,
-              );
-              if (index != null) {
-                controller.updateWorkout(index!, workout);
-              } else {
-                controller.addWorkout(workout);
-              }
-              Get.back();
-            },
-            child: const Text('Save Workout'),
-          ),
-        ],
+      body: SafeArea(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextField(
+                controller: controller.titleController,
+                decoration: customInputDecoration(
+                  labelText: 'Workout Title',
+                  hintText: 'Enter your workout title',
+                ),
+              ),
+            ),
+            DropdownItens(),
+            Row(
+              children: [
+                CustomInputTextfield(
+                    controller: controller.weightController,
+                    labelText: 'Weight (kg)',
+                    hintText: 'Weight (kg)'),
+                CustomInputTextfield(
+                    controller: controller.repsController,
+                    labelText: 'Repetitions',
+                    hintText: 'Repetitions'),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 16.0),
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: ElevatedButton(
+                  style: ButtonStyles.primaryButtonStyle(),
+                  onPressed: controller.addSet,
+                  child: const Text(
+                    'Add Set',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+            ),
+            SetList(),
+            SaveWorkoutButton(index: index),
+          ],
+        ),
       ),
     );
   }
