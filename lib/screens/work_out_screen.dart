@@ -65,9 +65,32 @@ class WorkoutScreen extends StatelessWidget {
                   itemCount: controller.sets.length,
                   itemBuilder: (context, index) {
                     final set = controller.sets[index];
-                    return ListTile(
-                      title: Text(
-                          '${set.exercise}: ${set.weight}kg, ${set.reps} reps'),
+                    return Dismissible(
+                      key: Key(set.hashCode.toString()),
+                      onDismissed: (direction) {
+                        controller.removeSet(index);
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            duration: const Duration(seconds: 1)
+                            content: Text('${set.exercise} removed'),
+                          ),
+                        );
+                      },
+                      background: Container(
+                        color: Colors.red,
+                        child: const Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 16.0),
+                            child: Icon(Icons.delete, color: Colors.white),
+                          ),
+                        ),
+                      ),
+                      child: ListTile(
+                        title: Text(
+                            '${set.exercise}: ${set.weight}kg, ${set.reps} reps'),
+                      ),
                     );
                   },
                 )),
