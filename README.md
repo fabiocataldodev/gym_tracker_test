@@ -5,10 +5,15 @@ Description: A TestApp for tracking workouts for MagicAI hiring process.
 Features
 
 •	Record workouts with details such as title, weight, and repetitions.
+
 •	View a list of all recorded workouts.
+
 •	Edit and delete existing workouts using dismissable widgets.
+
 •	Edit and delete individual exercises using dismissable widgets.
+
 •	Persistent storage using GetStorage.
+
 •	State management with GetX.
 
 Technologies Used
