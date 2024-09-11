@@ -55,13 +55,19 @@ The project adheres to the following design principles:
 Testing
 
 To run unit tests, widget tests, and integration tests, use the following command:
-flutter test
+
+    flutter test
 
 Integration Tests
 
 To run integration tests, which test the interaction between different parts of the application and its overall behaviour, use the following command:
-flutter test integration_test/app_test.dart
+
+    flutter test integration_test/app_test.dart
 
 Ensure that you have the testing environment properly set up and that all prerequisites are installed.
 
-<video controls src="Simulator Screen Recording - iPhone 15 Pro Max - 2024-09-11 at 20.mp4" title="Title"></video>
+Demo Video
+
+https://github.com/user-attachments/assets/41ad9ffc-db20-4cc6-96fc-c0f8e03486ba
+
+
