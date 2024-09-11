@@ -27,7 +27,7 @@ class WorkoutScreen extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.secondaryColor,
       appBar: AppBar(
         backgroundColor: AppColors.secondaryColor,
         title: Text(workout == null ? 'New Workout' : 'Edit Workout'),
@@ -40,8 +40,8 @@ class WorkoutScreen extends StatelessWidget {
               child: TextField(
                 controller: controller.titleController,
                 decoration: customInputDecoration(
-                  labelText: 'Workout Title',
-                  hintText: 'Enter your workout title',
+                  labelText: 'Enter your workout title',
+                  hintText: '',
                 ),
               ),
             ),
@@ -49,17 +49,17 @@ class WorkoutScreen extends StatelessWidget {
             Row(
               children: [
                 CustomInputTextfield(
-                    controller: controller.weightController,
-                    labelText: 'Weight (kg)',
-                    hintText: 'Weight (kg)'),
+                  controller: controller.weightController,
+                  labelText: 'Weight (kg)',
+                ),
                 CustomInputTextfield(
-                    controller: controller.repsController,
-                    labelText: 'Repetitions',
-                    hintText: 'Repetitions'),
+                  controller: controller.repsController,
+                  labelText: 'Repetitions',
+                ),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 16.0),
+              padding: const EdgeInsets.only(right: 16.0, bottom: 8),
               child: Align(
                 alignment: Alignment.centerRight,
                 child: ElevatedButton(

@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:gym_tracker_test/app_config/styles.dart';
 import 'package:gym_tracker_test/controller/work_out_controller.dart';
 import 'package:gym_tracker_test/models/workout_model.dart';
@@ -21,6 +19,14 @@ class SaveWorkoutButton extends GetView<WorkoutController> {
       child: ElevatedButton(
         style: ButtonStyles.primaryButtonStyle(),
         onPressed: () {
+          if (controller.sets.isEmpty) {
+            Get.snackbar(
+              'Empty List',
+              'Please add at least one exercise to the workout before saving.',
+            );
+            return;
+          }
+
           final title = controller.titleController.text.isNotEmpty
               ? controller.titleController.text
               : 'No Title';
@@ -29,11 +35,13 @@ class SaveWorkoutButton extends GetView<WorkoutController> {
             date: DateTime.now(),
             title: title,
           );
+
           if (index != null) {
             controller.updateWorkout(index!, workout);
           } else {
             controller.addWorkout(workout);
           }
+
           Get.back();
         },
         child: const Padding(

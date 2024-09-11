@@ -23,15 +23,16 @@ InputDecoration customInputDecoration({
     labelText: labelText,
     hintText: hintText,
     hintStyle: const TextStyle(color: Colors.grey),
-    labelStyle: const TextStyle(color: AppColors.primaryColor),
+    labelStyle: const TextStyle(color: Colors.grey),
+    floatingLabelStyle: const TextStyle(color: AppColors.primaryColor),
     border: const OutlineInputBorder(
-      borderSide: BorderSide(color: AppColors.primaryColor),
+      borderSide: BorderSide(color: Colors.grey),
     ),
     focusedBorder: const OutlineInputBorder(
       borderSide: BorderSide(color: AppColors.primaryColor),
     ),
     enabledBorder: const OutlineInputBorder(
-      borderSide: BorderSide(color: AppColors.primaryColor),
+      borderSide: BorderSide(color: Colors.grey),
     ),
   );
 }
