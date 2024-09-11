@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gym_tracker_test/services/storage_service.dart';
 import '../models/workout_model.dart';
-import '../services/storage_service.dart';
 
 class WorkoutController extends GetxController {
   var workouts = <Workout>[].obs;
@@ -11,7 +11,9 @@ class WorkoutController extends GetxController {
   final TextEditingController repsController = TextEditingController();
   final TextEditingController titleController = TextEditingController();
 
-  final StorageService _storageService = StorageService();
+  final StorageService _storageService;
+
+  WorkoutController(this._storageService);
 
   @override
   void onInit() {

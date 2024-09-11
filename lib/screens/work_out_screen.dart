@@ -38,6 +38,7 @@ class WorkoutScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: TextField(
+                key: const Key('titleField'),
                 controller: controller.titleController,
                 decoration: customInputDecoration(
                   labelText: 'Enter your workout title',
@@ -49,10 +50,12 @@ class WorkoutScreen extends StatelessWidget {
             Row(
               children: [
                 CustomInputTextfield(
+                  key: const Key('weightField'),
                   controller: controller.weightController,
                   labelText: 'Weight (kg)',
                 ),
                 CustomInputTextfield(
+                  key: const Key('repetitionsField'),
                   controller: controller.repsController,
                   labelText: 'Repetitions',
                 ),
