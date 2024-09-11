@@ -16,12 +16,18 @@ Features
 
 •	State management with GetX.
 
+
 Technologies Used
 
 •	Flutter: A framework for building natively compiled applications for mobile, web, and desktop from a single codebase.
+
+
 •	GetX: A powerful and lightweight solution for state management, route management, and dependency injection. Chosen for its simplicity and efficiency in managing state and routes without boilerplate code.
+
 •	GetStorage: A simple and efficient key-value storage system. Selected for its ease of use and minimal setup compared to alternatives like SharedPreferences or Hive.
+
 •	Mockito: A library for creating mocks and stubs. Used in unit testing to simulate dependencies and verify that functions and interactions behave as expected.
+
 
 Installation
 
@@ -45,25 +51,36 @@ Project Structure
 The project follows the MVC (Model-View-Controller) pattern:
 
 •	lib/
+
 •	app_config/: Contains theme data and other configuration settings.
+
 •	controllers/: Contains the WorkoutController for managing workout data and state.
+
 •	models/: Defines data models used in the application.
+
 •	screens/: Contains all the screens of the application.
+
 •	widgets/: Reusable widgets used across different screens.
+
 •	services/: Contains the implementation of StorageService for persistent storage.
+
 
 Design Principles
 
 The project adheres to the following design principles:
 
+
 •	Clean Code: The code is written with readability and maintainability in mind. Functions and classes are small, well-named, and follow a consistent style.
+
 •	SOLID Principles: The project follows SOLID principles to ensure a scalable and flexible codebase:
+
 
 Testing
 
 To run unit tests, widget tests, and integration tests, use the following command:
 
     flutter test
+
 
 Integration Tests
 
@@ -72,6 +89,7 @@ To run integration tests, which test the interaction between different parts of 
     flutter test integration_test/app_test.dart
 
 Ensure that you have the testing environment properly set up and that all prerequisites are installed.
+
 
 Demo Video
 
